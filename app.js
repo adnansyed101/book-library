@@ -18,13 +18,12 @@ class Book {
     return output;
   }
 
-  static addBookToMyLibrary(e) {
+  static addBookToMyLibrary() {
     const title = document.querySelector("#title");
     const author = document.querySelector("#author");
     const status = document.querySelector("#status");
     myLibrary.push(new Book(title.value, author.value, status.value));
     bookTable.innerHTML = Book.addBookToDOM();
-    // e.preventDefault();
   }
 
   static deleteBook(e) {
@@ -85,10 +84,10 @@ bookForm.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-titleInput.addEventListener("input", (e) => {
+titleInput.addEventListener("input", () => {
   Book.validityCheck(titleInput, "Please enter a Title name");
 });
 
-authorInput.addEventListener("input", (e) => {
+authorInput.addEventListener("input", () => {
   Book.validityCheck(authorInput, "Please enter an Author name");
 });
