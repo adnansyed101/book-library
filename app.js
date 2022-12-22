@@ -24,7 +24,7 @@ class Book {
     const status = document.querySelector("#status");
     myLibrary.push(new Book(title.value, author.value, status.value));
     bookTable.innerHTML = Book.addBookToDOM();
-    e.preventDefault();
+    // e.preventDefault();
   }
 
   static deleteBook(e) {
@@ -53,13 +53,42 @@ class Book {
     }
     e.preventDefault();
   }
+
+  static validityCheck(state, message) {
+    if (state.validity.valueMissing) {
+      state.setCustomValidity(message);
+      state.reportValidity();
+    } else {
+      state.setCustomValidity("");
+    }
+  }
 }
 
 let myLibrary = [];
 
 const bookTable = document.querySelector(".book-info");
-const bookForm = document.querySelector("#book-form");
+const bookForm = document.getElementById("book-form");
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
 
-bookForm.addEventListener("submit", Book.addBookToMyLibrary);
 bookTable.addEventListener("click", Book.changeStatus);
 bookTable.addEventListener("click", Book.deleteBook);
+
+bookForm.addEventListener("submit", (e) => {
+  if (!titleInput.validity.valid) {
+    Book.validityCheck(titleInput, "Please enter a Title name");
+  } else if (!authorInput.validity.valid) {
+    Book.validityCheck(authorInput, "Please enter an Author name");
+  } else {
+    Book.addBookToMyLibrary();
+  } 
+  e.preventDefault();
+});
+
+titleInput.addEventListener("input", (e) => {
+  Book.validityCheck(titleInput, "Please enter a Title name");
+});
+
+authorInput.addEventListener("input", (e) => {
+  Book.validityCheck(authorInput, "Please enter an Author name");
+});
