@@ -1,3 +1,9 @@
+const bookTable = document.querySelector(".book-info"),
+  bookForm = document.getElementById("book-form"),
+  titleInput = document.getElementById("title"),
+  authorInput = document.getElementById("author"),
+  statusInput = document.getElementById("status");
+
 class Book {
   constructor(title, author, status) {
     this.title = title;
@@ -19,10 +25,9 @@ class Book {
   }
 
   static addBookToMyLibrary() {
-    const title = document.querySelector("#title");
-    const author = document.querySelector("#author");
-    const status = document.querySelector("#status");
-    myLibrary.push(new Book(title.value, author.value, status.value));
+    myLibrary.push(
+      new Book(titleInput.value, authorInput.value, statusInput.value)
+    );
     bookTable.innerHTML = Book.addBookToDOM();
   }
 
@@ -65,11 +70,6 @@ class Book {
 
 let myLibrary = [];
 
-const bookTable = document.querySelector(".book-info");
-const bookForm = document.getElementById("book-form");
-const titleInput = document.getElementById("title");
-const authorInput = document.getElementById("author");
-
 bookTable.addEventListener("click", Book.changeStatus);
 bookTable.addEventListener("click", Book.deleteBook);
 
@@ -80,7 +80,7 @@ bookForm.addEventListener("submit", (e) => {
     Book.validityCheck(authorInput, "Please enter an Author name");
   } else {
     Book.addBookToMyLibrary();
-  } 
+  }
   e.preventDefault();
 });
 
