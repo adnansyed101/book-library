@@ -4,58 +4,55 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="app.js" defer></script>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
-      integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="app.js" defer></script>
-    <title>Book Library</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <title>OOP Booklist</title>
   </head>
   <body>
-    <section class="container">
-      <h1>My book Library</h1>
-      <form id="book-form" novalidate>
-        <div class="row">
-          <div class="five columns">
-            <label for="title">Title</label>
-            <input class="u-full-width" type="text" id="title" required/>
-          </div>
-          <div class="five columns">
-            <label for="author">Author</label>
-            <input type="text" class="u-full-width" id="author" required/>
-          </div>
-          <div class="two columns">
-            <label for="status">Status</label>
-            <select name="read" id="status" class="u-full-width">
-              <option value="Not Read">Not Read</option>
-              <option value="Read">Read</option>
-            </select>
-          </div>
+    <div class="container mt-4">
+      <h1 class="display-4 text-center">
+        <i class="fas fa-book-open text-primary"></i>My
+        <span class="text-primary">Book</span>List
+      </h1>
+      <form id="book-form">
+        <div class="form-group">
+          <label for="title" class="">Title</label>
+          <input type="text" id="title" class="form-control" />
         </div>
-        <input
-          type="submit"
-          class="button-primary submit-book"
-          value="submit"
-        />
+        <div class="form-group">
+          <label for="author" class="mt-4">Author</label>
+          <input type="text" id="author" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="isbn" class="mt-4">ISBN#</label>
+          <input type="text" id="isbn" class="form-control" />
+        </div>
+        <div class="d-grid mt-4">
+          <input
+            type="submit"
+            value="Add Book"
+            class="btn btn-lg btn-primary"
+          />
+        </div>
       </form>
-    </section>
-
-    <section class="container" id="book-table">
-      <table class="u-full-width">
+      <table class="table table-stripped mt-5">
         <thead>
           <tr>
-            <th>Number</th>
-            <th>Name</th>
+            <th>Title</th>
             <th>Author</th>
-            <th>Status</th>
-            <th>&nbsp;</th>
+            <th>ISBN</th>
+            <th></th>
           </tr>
         </thead>
-        <tbody class="book-info"></tbody>
+        <tbody id="book-list"></tbody>
       </table>
-    </section>
+    </div>
   </body>
 </html>
